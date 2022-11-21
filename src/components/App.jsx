@@ -33,19 +33,27 @@ export const App = () => {
     return;
   }
     
-  const addContact = values => {
-    setContacts(prevContacts => {
-      if (
-        prevContacts.find(
-          contact => contact.name.toLowerCase() === values.name.toLowerCase()
-        )
-      ) {
-        alert(`${values.name} is already in contacts.`);
-        return [...prevContacts];
-      };
-      return [...prevContacts, values];
-    });
+  // const addContact = values => {
+  //   if (contacts.find(contact => contact.name.toLowerCase() === values.name.toLowerCase()
+  //   )) {
+  //     alert(`${values.name} is already in contacts.`);
+  //     return;
+  //   };
+  //   setContacts(contacts => [{values}, ...contacts]
+  //   );
+  // };
+
+  const addContact = (name, number) => {
+    if (contacts.find(contact => contact.name === name)) {
+      alert(`${name} is already in contacts.`);
+      return;
+    } else if (contacts.find(item => item.number === number)) {
+      alert(`${number} is already in contacts.`);
+      return;
+    }
+    setContacts(contacts => [{ name, number }, ...contacts]);
   };
+
 
 const removeContact = id => {
     setContacts(prevState => {
