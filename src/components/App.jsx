@@ -33,35 +33,27 @@ export const App = () => {
     return;
   }
     
-  // const addContact = values => {
-  //   if (contacts.find(contact => contact.name.toLowerCase() === values.name.toLowerCase()
-  //   )) {
-  //     alert(`${values.name} is already in contacts.`);
-  //     return;
-  //   };
-  //   setContacts(contacts => [{values}, ...contacts]
-  //   );
-  // };
+  
 
-  const addContact = (name, number) => {
-    if (contacts.find(contact => contact.name === name)) {
-      alert(`${name} is already in contacts.`);
+  const addContact = (values) => {
+    const prevContacts = contacts.find(
+      contact => contact.name.toLowerCase() === values.name.toLowerCase());
+    if (prevContacts) {
+      alert(`${values.name} is already in contacts.`);
       return;
-    } else if (contacts.find(item => item.number === number)) {
-      alert(`${number} is already in contacts.`);
-      return;
+    };
+        setContacts([ values , ...contacts])
     }
-    setContacts(contacts => [{ name, number }, ...contacts]);
-  };
-
-
-const removeContact = id => {
+    ;
+  
+  const removeContact = id => {
     setContacts(prevState => {
       console.log(prevState);
 
       return prevState.filter(el => el.id !== id);
     });
   };
+
 
 
   return (
@@ -98,5 +90,24 @@ const removeContact = id => {
 };
 
 
+  // const addContact = (name, number) => {
+  //   if (contacts.find(contact => contact.name === name)) {
+  //     alert(`${name} is already in contacts.`);
+  //     return;
+  //   } else if (contacts.find(item => item.number === number)) {
+  //     alert(`${number} is already in contacts.`);
+  //     return;
+  //   }
+  //   setContacts(contacts => [{ name, number }, ...contacts]);
+  // };
 
+  // const addContact = values => {
+  //   if (contacts.find(contact => contact.name.toLowerCase() === values.name.toLowerCase()
+  //   )) {
+  //     alert(`${values.name} is already in contacts.`);
+  //     return;
+  //   };
+  //   setContacts(contacts => [{values}, ...contacts]
+  //   );
+  // };
 
